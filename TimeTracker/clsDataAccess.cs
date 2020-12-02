@@ -19,7 +19,7 @@ public class clsDataAccess
     /// </summary>
     public clsDataAccess()
     {
-        sConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Directory.GetCurrentDirectory() + ".\\.\\TimeTracker.accdb";
+        sConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Directory.GetCurrentDirectory() + "\\TimeTracker.accdb";
     }
 
     /// <summary>
