@@ -1,31 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Data;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TimeTracker.Login;
 
-namespace TimeTracker
+namespace TimeTracker.Login
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Login : Window
     {
         private LoginLogic loginLogic = new LoginLogic();
-
-        public MainWindow()
+        public Login()
         {
             InitializeComponent();
         }
@@ -37,9 +32,9 @@ namespace TimeTracker
         /// <param name="e"></param>
         private void btnSignUp_Click(object sender, RoutedEventArgs e)
         {
-                SignUp.SignUp signUp = new SignUp.SignUp(); //create your new form.
-                signUp.Show();
-                this.Close(); //only if you want to close the current form.
+            SignUp.SignUp signUp = new SignUp.SignUp(); //create your new form.
+            signUp.Show();
+            this.Close(); //only if you want to close the current form.
         }
 
         /// <summary>
