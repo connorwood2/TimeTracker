@@ -23,7 +23,10 @@ x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
-[Bb]in/
+bin/Release
+bin/Debug/TimeTracker.exe
+bin/Debug/TimeTracker.exe.config
+bin/Debug/TimeTracker.pdb
 [Oo]bj/
 [Ll]og/
 
