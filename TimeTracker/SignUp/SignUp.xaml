@@ -13,6 +13,6 @@
         <TextBox x:Name="txtGroupNumber" HorizontalAlignment="Left" Height="51" Margin="219,222,0,0" TextWrapping="Wrap" Text="Group Number" VerticalAlignment="Top" Width="345" FontSize="24" VerticalContentAlignment="Center" GotFocus="txtUsername_GotFocus" AllowDrop="True"/>
         <Label Content="Please enter 0 to be an observer" HorizontalAlignment="Left" Margin="290,278,0,0" VerticalAlignment="Top" Width="213" FontSize="14"/>
         <Button x:Name="btnSubmitButton" Content="Submit" HorizontalAlignment="Left" Margin="277,346,0,0" VerticalAlignment="Top" Width="211" Height="44" FontSize="24" Click="btnSubmitButton_Click"/>
-
+        <Label x:Name="lblError" Content="Error: " HorizontalAlignment="Center" Margin="219,319,0,0" VerticalAlignment="Top" Height="22" Width="345" Foreground="Red" FontSize="16" Visibility="Hidden"/>
     </Grid>
 </Window>

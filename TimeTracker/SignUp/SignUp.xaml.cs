@@ -63,10 +63,26 @@ namespace TimeTracker.SignUp
 
         private void btnSubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            SignUpLogic.RegisterUser(txtUsername.Text, txtPassword.Text, txtGroupNumber.Text);
-            MainWindow main = new MainWindow();
-            main.Show();
-            this.Close();
+            if (txtUsername.Text == "" || txtUsername.Text == "Username")
+            {
+                lblError.Visibility = Visibility.Visible;
+                lblError.Content = "Error: Missing required field: Username";
+            }
+
+            bool usernameAlreadyExists = SignUpLogic.RegisterUser(txtUsername.Text, txtPassword.Text, txtGroupNumber.Text);
+            if (usernameAlreadyExists)
+            {
+                lblError.Visibility = Visibility.Visible;
+                lblError.Content = "Error: Username already exists - Try again";
+                txtUsername.Text = "Username";
+                txtUsername.GotFocus += txtUsername_GotFocus;
+            }
+            else
+            {
+                Login.Login login = new Login.Login();
+                login.Show();
+                this.Close();
+            }
         }
     }
 }

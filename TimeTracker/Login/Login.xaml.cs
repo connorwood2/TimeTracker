@@ -56,6 +56,15 @@ namespace TimeTracker.Login
                 input.Show();
                 this.Close();
             }
+            else
+            {
+                lblError.Visibility = Visibility.Visible;
+                lblError.Content = "Error: username or password is incorrect";
+                txtUsername.Text = "Username";
+                txtPassword.Text = "Password";
+                txtUsername.GotFocus += txtUsername_GotFocus;
+                txtPassword.GotFocus += txtPassword_GotFocus;
+            }
 
         }
         /// <summary>
