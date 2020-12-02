@@ -50,15 +50,15 @@ namespace TimeTracker.SignUp
         }
 
         /// <summary>
-        /// Will delete the text inside of the group number field when a user clicks there
+        /// Will delete the text inside of the group field when a user clicks there
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void txtGroupNumber_GotFocus(object sender, RoutedEventArgs e)
+        public void txtGroup_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox tb = (TextBox)sender;
             tb.Text = string.Empty;
-            tb.GotFocus -= txtGroupNumber_GotFocus;
+            tb.GotFocus -= txtGroup_GotFocus;
         }
 
         private void btnSubmitButton_Click(object sender, RoutedEventArgs e)
@@ -67,21 +67,36 @@ namespace TimeTracker.SignUp
             {
                 lblError.Visibility = Visibility.Visible;
                 lblError.Content = "Error: Missing required field: Username";
+                return;
+            }
+            if (txtPassword.Text == "" || txtPassword.Text == "Password")
+            {
+                lblError.Visibility = Visibility.Visible;
+                lblError.Content = "Error: Missing required field: Password";
+                return;
+            }
+            if (txtGroup.Text == "" || txtGroup.Text == "Group")
+            {
+                lblError.Visibility = Visibility.Visible;
+                lblError.Content = "Error: Missing required field: Group";
+                return;
             }
 
-            bool usernameAlreadyExists = SignUpLogic.RegisterUser(txtUsername.Text, txtPassword.Text, txtGroupNumber.Text);
+            bool usernameAlreadyExists = SignUpLogic.RegisterUser(txtUsername.Text, txtPassword.Text, txtGroup.Text);
             if (usernameAlreadyExists)
             {
                 lblError.Visibility = Visibility.Visible;
                 lblError.Content = "Error: Username already exists - Try again";
                 txtUsername.Text = "Username";
                 txtUsername.GotFocus += txtUsername_GotFocus;
+                return;
             }
             else
             {
                 Login.Login login = new Login.Login();
                 login.Show();
                 this.Close();
+                return;
             }
         }
     }
