@@ -15,10 +15,10 @@ namespace TimeTracker.SignUp
             //string sql = "SELECT Username FROM [User] WHERE Username = 'Bilbo'";
             var user = data.ExecuteScalarSQL("SELECT Username FROM [User] WHERE Username = '" + username + "';");
 
-            //If the username already exists, return false. Else add a new user and return true.
+            //If the username already exists, return true. Else add a new user and return false.
             if (username == user)
             {
-                return false;
+                return true;
             }
 
             string type = "";
@@ -35,9 +35,19 @@ namespace TimeTracker.SignUp
             var salt = CreateSalt();
             var hash = GenerateSHA256Hash(password, salt);
 
-            data.ExecuteNonQuery("INSERT INTO [User] ([Username], [Hash], [Salt], [Type], [Group]) VALUES ('" + username + "', '" + hash + "', '" + salt + "', '" + type + "', '" + group + "');");
+            //Get rid of all single and double quotes
+            while(hash.Contains("'") || hash.Contains("\"") || salt.Contains("'") || salt.Contains("\""))
+            {
+                salt = CreateSalt();
+                hash = GenerateSHA256Hash(password, salt);
+            }
+            //If it fials, get a new salt and hash and try again.
+            while (data.ExecuteNonQuery("INSERT INTO [User] ([Username], [Hash], [Salt], [Type], [Group]) VALUES ('" + username + "', '" + hash + "', '" + salt + "', '" + type + "', '" + group + "');") == -1){
+                salt = CreateSalt();
+                hash = GenerateSHA256Hash(password, salt);;
+            };
 
-            return true;
+            return false;
         }
 
         public string CreateSalt()

@@ -145,7 +145,7 @@ public class clsDataAccess
         }
         catch (Exception ex)
         {
-            throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+            return -1;
         }
     }
 }
