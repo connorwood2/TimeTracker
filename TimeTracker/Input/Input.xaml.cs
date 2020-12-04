@@ -51,14 +51,36 @@ namespace TimeTracker.Input
                 txtboxComment.IsEnabled = false;
                 btnResetTime.IsEnabled = false;
             }
-            
-            
+
+            //Populate the combo box
+            DataSet groupNums = inputLogic.GetAllGroupNumbers();
+            for (int i = 0; i < groupNums.Tables[0].Rows.Count; i++)
+            {
+                //Observers should not be able to be chosen
+                if(groupNums.Tables[0].Rows[i][0].ToString() == "0")
+                {
+                    continue;
+                }
+                cbxGroupSelection.Items.Add(groupNums.Tables[0].Rows[i][0].ToString());
+            }
+
+
         }
 
-        private void btnViewAll_Click(object sender, RoutedEventArgs e)
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
-            var groupNum = inputLogic.GetGroupNumber(_username);
+            var groupNum = cbxGroupSelection.SelectedItem.ToString();
+            PopulateResults(groupNum);
+        }
 
+        private void cbxGroupSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var groupNum = cbxGroupSelection.SelectedItem.ToString();
+            PopulateResults(groupNum);
+        }
+
+        private void PopulateResults(string groupNum)
+        {
             var view = inputLogic.ViewAll(groupNum);
 
             var pieChartView = inputLogic.GetTotalHours(groupNum);
@@ -66,10 +88,8 @@ namespace TimeTracker.Input
 
             dataGrid.ItemsSource = new DataView(view.Tables[0]); // Grab [User] Table
 
-            ((PieSeries) PieChart.Series[0]).ItemsSource = table.AsEnumerable().Select(grp =>
-                new KeyValuePair<string, string>(grp[0].ToString(), grp[1].ToString()));
-
-
+            ((PieSeries)PieChart.Series[0]).ItemsSource = table.AsEnumerable().Select(grp =>
+               new KeyValuePair<string, string>(grp[0].ToString(), grp[1].ToString()));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -84,7 +104,7 @@ namespace TimeTracker.Input
         {
             StartTime = DateTime.Now;
             lblStart.Visibility = Visibility.Visible;
-            lblStart.Content = $"Start time: {StartTime}";
+            lblStart.Content = $"Start Time: {StartTime}";
             lblError.Visibility = Visibility.Hidden;
         }
 
@@ -99,7 +119,7 @@ namespace TimeTracker.Input
 
             EndTime = DateTime.Now;
             lblEnd.Visibility = Visibility.Visible;
-            lblEnd.Content = $"End time: {EndTime}";
+            lblEnd.Content = $"Stop Time: {EndTime}";
 
             //var minutes = (EndTime.Subtract(StartTime).TotalMinutes);
 
@@ -115,17 +135,51 @@ namespace TimeTracker.Input
 
         private void btnResetTime_Click(object sender, RoutedEventArgs e)
         {
-            lblStart.Visibility = Visibility.Hidden;
-            lblEnd.Visibility = Visibility.Hidden;
             lblError.Visibility = Visibility.Hidden;
-            lblTotalTime.Visibility = Visibility.Hidden;
-
+            lblStart.Content = "Start Time:";
+            lblEnd.Content = "Stop Time:";
+            lblTotalTime.Content = "Total Time:";
+            txtboxComment.Text = "";
             StartTime = DateTime.MinValue;
+            EndTime = DateTime.MinValue;
+            _seconds = 0;
         }
 
         private void btnInsertData_Click(object sender, RoutedEventArgs e)
         {
+            if(StartTime == DateTime.MinValue)
+            {
+                lblError.Visibility = Visibility.Visible;
+                lblError.Content = "Error: Missing a required field - Start Time";
+                return;
+            }
+            if(EndTime == DateTime.MinValue)
+            {
+                lblError.Visibility = Visibility.Visible;
+                lblError.Content = "Error: Missing a required field - Stop Time";
+                return;
+            }
+            if(txtboxComment.Text == "")
+            {
+                lblError.Visibility = Visibility.Visible;
+                lblError.Content = "Error: Missing a required field - comment";
+                return;
+            }
+            if(txtboxComment.Text.Length < 5)
+            {
+                lblError.Visibility = Visibility.Visible;
+                lblError.Content = "Error: Comment must be 5 characters long";
+                return;
+            }
+            lblError.Visibility = Visibility.Hidden;
             inputLogic.InsertData(_username, StartTime, EndTime, txtboxComment.Text, _seconds);
+            lblStart.Content = "Start Time:";
+            lblEnd.Content = "Stop Time:";
+            lblTotalTime.Content = "Total Time:";
+            txtboxComment.Text = "";
+            StartTime = DateTime.MinValue;
+            EndTime = DateTime.MinValue;
+            _seconds = 0;
         }
     }
 }

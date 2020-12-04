@@ -91,5 +91,12 @@ namespace TimeTracker.Input
 
             //data.ExecuteNonQuery("INSERT INTO [UserInput] ([UserID], [StartTime], [EndTime], [Comment], [TotalSecondsWorked]) VALUES ('" + userId + "', '" + start + "', '" + end + "', '" + comment + "', '" + converted + "');");
         }
+
+        public DataSet GetAllGroupNumbers()
+        {
+            int numRows = 0;
+            string sql = "SELECT DISTINCT [Group] FROM [User] ORDER BY [Group];";
+            return data.ExecuteSQLStatement(sql, ref numRows);
+        }
     }
 }

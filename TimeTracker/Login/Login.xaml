@@ -14,7 +14,7 @@
         <Button x:Name="btnSubmit" Content="Login" HorizontalAlignment="Left" Height="45" Margin="165,257,0,0" VerticalAlignment="Top" Width="168" FontSize="24" Click="btnLogin_Click" Grid.Column="1"/>
         <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="51" Margin="165,145,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="345" FontSize="24" VerticalContentAlignment="Center" GotFocus="txtUsername_GotFocus" AllowDrop="True" Grid.Column="1"/>
         <Label x:Name="lblTitle" Content="Time Tracker Login" HorizontalAlignment="Left" Height="72" Margin="73,68,0,0" VerticalAlignment="Top" Width="508" FontSize="36" HorizontalContentAlignment="Center" Grid.Column="1"/>
-        <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Height="51" Margin="165,201,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="346" FontSize="24" VerticalContentAlignment="Center" GotFocus="txtPassword_GotFocus" AllowDrop="True" Grid.Column="1"/>
+        <TextBox x:Name="txtPassword"  HorizontalAlignment="Left" Height="51" Margin="165,201,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="346" FontSize="24" VerticalContentAlignment="Center" GotFocus="txtPassword_GotFocus" AllowDrop="True" Grid.Column="1"/>
         <Button x:Name="btnSubmit_Copy" Content="Sign Up" HorizontalAlignment="Left" Height="45" Margin="343,257,0,0" VerticalAlignment="Top" Width="168" FontSize="24" Click="btnSignUp_Click" Grid.Column="1"/>
         <Label x:Name="lblError" Content="Error: " Grid.Column="1" HorizontalAlignment="Left" Margin="165,307,0,0" VerticalAlignment="Top" Height="40" Width="345" Foreground="Red" Visibility="Hidden" FontSize="16"/>
     </Grid>

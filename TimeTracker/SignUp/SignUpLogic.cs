@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,6 +47,13 @@ namespace TimeTracker.SignUp
             rng.GetBytes(buff);
 
             return Convert.ToBase64String(buff);
+        }
+
+        public DataSet GetAllGroupNumbers()
+        {
+            int numRows = 0;
+            string sql = "SELECT DISTINCT [Group] FROM [User] ORDER BY [Group];";
+            return data.ExecuteSQLStatement(sql, ref numRows);
         }
 
         public string GenerateSHA256Hash(String input, String salt)

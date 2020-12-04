@@ -76,7 +76,6 @@ namespace TimeTracker.Login
         {
             TextBox tb = (TextBox)sender;
             tb.Text = string.Empty;
-            tb.GotFocus -= txtUsername_GotFocus;
         }
 
         /// <summary>
@@ -88,7 +87,6 @@ namespace TimeTracker.Login
         {
             TextBox tb = (TextBox)sender;
             tb.Text = string.Empty;
-            tb.GotFocus -= txtPassword_GotFocus;
         }
 
         private void btnBypass_Click(object sender, RoutedEventArgs e)
