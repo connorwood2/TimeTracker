@@ -52,7 +52,7 @@ namespace TimeTracker.Login
             //If the info matches, navigate to the next page
             if (isInfoCorrect)
             {
-                Input.Input input = new Input.Input();
+                Input.Input input = new Input.Input(txtUsername.Text);
                 input.Show();
                 this.Close();
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,85 @@ namespace TimeTracker.Input
     /// </summary>
     public partial class Input : Window
     {
-        public Input()
+        private InputLogic inputLogic = new InputLogic();
+
+        private string _username;
+
+        private DateTime StartTime = DateTime.MinValue;
+
+        private DateTime EndTime = new DateTime();
+
+
+        // Default constructor
+        //public Input()
+        //{
+        //    InitializeComponent();
+        //}
+
+        public Input(string username)
         {
             InitializeComponent();
+            _username = username;
+        }
+
+        private void btnViewAll_Click(object sender, RoutedEventArgs e)
+        {
+            var groupNum = inputLogic.GetGroupNumber(_username);
+
+            var view = inputLogic.ViewAll(groupNum);
+
+            dataGrid.ItemsSource = new DataView(view.Tables[0]); // Grab [User] Table
+
+            //dataGrid.ItemsSource = new DataView(view.Tables["User"]); // Did not work
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Login.Login login = new Login.Login();
+            login.Show();
+            Close();
+            return;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            StartTime = DateTime.Now;
+            lblStart.Visibility = Visibility.Visible;
+            lblStart.Content = $"Start time: {StartTime}";
+            lblError.Visibility = Visibility.Hidden;
+        }
+
+        private void btnStopTime_Click(object sender, RoutedEventArgs e)
+        {
+            if (StartTime == DateTime.MinValue)
+            {
+                lblError.Visibility = Visibility.Visible;
+                lblError.Content = "Error. You have not started the time.";
+                return;
+            }
+
+            EndTime = DateTime.Now;
+            lblEnd.Visibility = Visibility.Visible;
+            lblEnd.Content = $"End time: {EndTime}";
+
+            //var minutes = (EndTime.Subtract(StartTime).TotalMinutes);
+
+            //lblTotalTime.Content = $"Total minutes tracked: {minutes}";
+
+            var difference = EndTime - StartTime;
+            lblTotalTime.Content = ($"Total Time: {difference.Hours:00}:{difference.Minutes:00}:{difference.Seconds + difference.Milliseconds / 1000.0:00}");
+
+            lblTotalTime.Visibility = Visibility.Visible;
+        }
+
+        private void btnResetTime_Click(object sender, RoutedEventArgs e)
+        {
+            lblStart.Visibility = Visibility.Hidden;
+            lblEnd.Visibility = Visibility.Hidden;
+            lblError.Visibility = Visibility.Hidden;
+            lblTotalTime.Visibility = Visibility.Hidden;
+
+            StartTime = DateTime.MinValue;
         }
     }
 }

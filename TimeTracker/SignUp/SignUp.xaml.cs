@@ -99,5 +99,13 @@ namespace TimeTracker.SignUp
                 return;
             }
         }
+
+        private void btnBackToLogin_Click(object sender, RoutedEventArgs e)
+        {
+            Login.Login login = new Login.Login();
+            login.Show();
+            Close();
+            return;
+        }
     }
 }

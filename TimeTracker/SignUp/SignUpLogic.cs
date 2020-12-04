@@ -14,10 +14,10 @@ namespace TimeTracker.SignUp
             //string sql = "SELECT Username FROM [User] WHERE Username = 'Bilbo'";
             var user = data.ExecuteScalarSQL("SELECT Username FROM [User] WHERE Username = '" + username + "';");
 
-            //If the username already exists, return true. Else add a new user and return false.
+            //If the username already exists, return false. Else add a new user and return true.
             if (username == user)
             {
-                return true;
+                return false;
             }
 
             string type = "";
@@ -32,12 +32,11 @@ namespace TimeTracker.SignUp
             }
 
             var salt = CreateSalt();
-
             var hash = GenerateSHA256Hash(password, salt);
 
             data.ExecuteNonQuery("INSERT INTO [User] ([Username], [Hash], [Salt], [Type], [Group]) VALUES ('" + username + "', '" + hash + "', '" + salt + "', '" + type + "', '" + group + "');");
 
-            return false;
+            return true;
         }
 
         public string CreateSalt()

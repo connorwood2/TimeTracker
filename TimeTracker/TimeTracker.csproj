@@ -60,6 +60,7 @@
     <Compile Include="Input\Input.xaml.cs">
       <DependentUpon>Input.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Input\InputLogic.cs" />
     <Compile Include="Login\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
