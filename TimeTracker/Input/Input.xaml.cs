@@ -25,6 +25,8 @@ namespace TimeTracker.Input
 
         private string _username;
 
+        private int _seconds = 0;
+
         private DateTime StartTime = DateTime.MinValue;
 
         private DateTime EndTime = new DateTime();
@@ -106,6 +108,8 @@ namespace TimeTracker.Input
             var difference = EndTime - StartTime;
             lblTotalTime.Content = ($"Total Time: {difference.Hours:00}:{difference.Minutes:00}:{difference.Seconds + difference.Milliseconds / 1000.0:00}");
 
+            _seconds = difference.Seconds;
+
             lblTotalTime.Visibility = Visibility.Visible;
         }
 
@@ -117,6 +121,11 @@ namespace TimeTracker.Input
             lblTotalTime.Visibility = Visibility.Hidden;
 
             StartTime = DateTime.MinValue;
+        }
+
+        private void btnInsertData_Click(object sender, RoutedEventArgs e)
+        {
+            inputLogic.InsertData(_username, StartTime, EndTime, txtboxComment.Text, _seconds);
         }
     }
 }

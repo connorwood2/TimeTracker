@@ -80,5 +80,16 @@ namespace TimeTracker.Input
 
             return false;
         }
+        public void InsertData(string username, DateTime start, DateTime end, string comment, int secondsWorked)
+        {
+            var getUserId = "SELECT UserID FROM [User] WHERE Username = '" + username + "';";
+            var userId = data.ExecuteScalarSQL(getUserId);
+
+            string sql = "INSERT INTO [UserInput] ([UserID], [StartTime], [EndTime], [Comment], [TotalSecondsWorked]) VALUES ('" + userId + "', '" + start + "', '" + end + "', '" + comment + "', '" + secondsWorked + "');";
+
+            data.ExecuteNonQuery(sql);
+
+            //data.ExecuteNonQuery("INSERT INTO [UserInput] ([UserID], [StartTime], [EndTime], [Comment], [TotalSecondsWorked]) VALUES ('" + userId + "', '" + start + "', '" + end + "', '" + comment + "', '" + converted + "');");
+        }
     }
 }

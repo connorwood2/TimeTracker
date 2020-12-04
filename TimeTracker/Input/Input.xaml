@@ -158,6 +158,6 @@
             VerticalAlignment="Top"
             Width="429"
             x:Name="cbxGroupSelection" />
-
+        <Button x:Name="btnInsertData" Content="Insert Data" Grid.Column="1" HorizontalAlignment="Left" Margin="193.333,515,0,0" VerticalAlignment="Top" Width="171" Height="37" Click="btnInsertData_Click"/>
     </Grid>
 </Window>
