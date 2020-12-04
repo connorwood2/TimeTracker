@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dv="clr-namespace:System.Windows.Controls.DataVisualization;assembly=DotNetProjects.DataVisualization.Toolkit"
+        xmlns:dvc="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit"
         xmlns:local="clr-namespace:TimeTracker.Input"
         mc:Ignorable="d"
         Title="Input" Height="900" Width="1600">
@@ -22,6 +24,12 @@
                 </TransformGroup>
             </DataGrid.RenderTransform>
         </DataGrid>
+        <dvc:Chart Canvas.Top="80" Canvas.Left="10" Name="PieChart" Width="400" Height="250">
+            <dvc:Chart.Series>  
+                <dvc:PieSeries Title="Experience" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">  
+                </dvc:PieSeries>  
+            </dvc:Chart.Series>  
+        </dvc:Chart>
         <Button x:Name="btnBackToLogin" Content="Back to Login" HorizontalAlignment="Left" Margin="95,741,0,0" VerticalAlignment="Top" Width="322" Height="68" Click="Button_Click" Grid.Column="1"/>
         <Button x:Name="btnStartTime" Content="Start Time" Grid.Column="1" HorizontalAlignment="Left" Margin="0,173,0,0" VerticalAlignment="Top" Width="205" Height="75" Click="Button_Click_1"/>
         <Button x:Name="btnStopTime" Content="Stop Time" Grid.Column="1" HorizontalAlignment="Left" Margin="338,173,0,0" VerticalAlignment="Top" Width="204" Height="75" Click="btnStopTime_Click"/>
