@@ -39,7 +39,18 @@ namespace TimeTracker.Input
         public Input(string username)
         {
             InitializeComponent();
+            
             _username = username;
+            var groupNum = inputLogic.GetGroupNumber(_username);
+            if (inputLogic.IsObserver(groupNum))
+            {
+                btnStartTime.IsEnabled = false;
+                btnStopTime.IsEnabled = false;
+                txtboxComment.IsEnabled = false;
+                btnResetTime.IsEnabled = false;
+            }
+            
+            
         }
 
         private void btnViewAll_Click(object sender, RoutedEventArgs e)
@@ -48,18 +59,15 @@ namespace TimeTracker.Input
 
             var view = inputLogic.ViewAll(groupNum);
 
+            var pieChartView = inputLogic.GetTotalHours(groupNum);
+            var table = pieChartView.Tables[0];
+
             dataGrid.ItemsSource = new DataView(view.Tables[0]); // Grab [User] Table
 
-            ((PieSeries) PieChart.Series[0]).ItemsSource = new KeyValuePair<string, int>[]
-            {
-                new KeyValuePair<string, int>("Project Manager", 12),
-                new KeyValuePair<string, int>("CEO", 25),
-                new KeyValuePair<string, int>("Software Engg.", 5),
-                new KeyValuePair<string, int>("Team Leader", 6),
-                new KeyValuePair<string, int>("Project Leader", 10),
-                new KeyValuePair<string, int>("Developer", 4)
-                //dataGrid.ItemsSource = new DataView(view.Tables["User"]); // Did not work
-            };
+            ((PieSeries) PieChart.Series[0]).ItemsSource = table.AsEnumerable().Select(grp =>
+                new KeyValuePair<string, string>(grp[0].ToString(), grp[1].ToString()));
+
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -20,11 +20,14 @@ namespace TimeTracker.Input
 
             if (converted == 0)
             {
-                sql = "SELECT * FROM [User]";
+                sql =
+                    "SELECT u.[username], ui.[StartTime], ui.[EndTime], ui.[Comment], ui.[TotalSecondsWorked] FROM [User] AS u INNER JOIN [UserInput] AS ui ON u.[UserID] = ui.[UserID] ORDER BY u.[username];";
             }
             else
             {
-                sql = "SELECT * FROM [User] WHERE [Group] = '" + converted + "';";
+                sql =
+                    "SELECT u.[username], ui.[StartTime], ui.[EndTime], ui.[Comment], ui.[TotalSecondsWorked] FROM [User] AS u INNER JOIN [UserInput] AS ui ON u.[UserID] = ui.[UserID] WHERE u.[Group] = '" +
+                    converted + "' ORDER BY u.[username];";
             }
 
             int num = 100;
@@ -41,6 +44,41 @@ namespace TimeTracker.Input
             var groupNum = data.ExecuteScalarSQL(sql);
 
             return groupNum;
+        }
+
+        public DataSet GetTotalHours(string groupNum)
+        {
+            var converted = Int32.Parse(groupNum);
+            string sql = "";
+            if (converted == 0)
+            {
+                sql =
+                    "SELECT u.username, SUM(ui.TotalSecondsWorked) FROM [User] u INNER JOIN [UserInput] ui ON u.[UserID] = ui.[UserID] GROUP BY u.[username] ORDER BY u.[username];";
+            }
+
+            else
+            {
+                sql =
+                    "SELECT u.username, SUM(ui.TotalSecondsWorked) FROM [User] u INNER JOIN [UserInput] ui ON u.[UserID] = ui.[UserID] WHERE u.[Group] = '" +
+                    converted + "' GROUP BY u.[username] ORDER BY u.[username];";
+            }
+
+
+            int num = 100;
+            var dt = data.ExecuteSQLStatement(sql, ref num);
+
+            return dt;
+        }
+
+        public bool IsObserver(string groupNum)
+        {
+            var converted = Int32.Parse(groupNum);
+            if (converted == 0)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
