@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.DataVisualization.Charting;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -38,7 +39,18 @@ namespace TimeTracker.Input
         public Input(string username)
         {
             InitializeComponent();
+            
             _username = username;
+            var groupNum = inputLogic.GetGroupNumber(_username);
+            if (inputLogic.IsObserver(groupNum))
+            {
+                btnStartTime.IsEnabled = false;
+                btnStopTime.IsEnabled = false;
+                txtboxComment.IsEnabled = false;
+                btnResetTime.IsEnabled = false;
+            }
+            
+            
         }
 
         private void btnViewAll_Click(object sender, RoutedEventArgs e)
@@ -47,9 +59,15 @@ namespace TimeTracker.Input
 
             var view = inputLogic.ViewAll(groupNum);
 
+            var pieChartView = inputLogic.GetTotalHours(groupNum);
+            var table = pieChartView.Tables[0];
+
             dataGrid.ItemsSource = new DataView(view.Tables[0]); // Grab [User] Table
 
-            //dataGrid.ItemsSource = new DataView(view.Tables["User"]); // Did not work
+            ((PieSeries) PieChart.Series[0]).ItemsSource = table.AsEnumerable().Select(grp =>
+                new KeyValuePair<string, string>(grp[0].ToString(), grp[1].ToString()));
+
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
