@@ -8,39 +8,39 @@
         xmlns:local="clr-namespace:TimeTracker.Input"
         mc:Ignorable="d"
         Title="Input" Height="900" Width="1600">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="47*"/>
-            <ColumnDefinition Width="746*"/>
-        </Grid.ColumnDefinitions>
-        <Button x:Name="btnViewAll" Content="View All" HorizontalAlignment="Left" Margin="1333,45,0,0" VerticalAlignment="Top" Width="37" Height="29" Click="btnViewAll_Click" Grid.Column="1"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="395" Margin="686,415,0,0" VerticalAlignment="Top" Width="742" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
-            <DataGrid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.146"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </DataGrid.RenderTransform>
-        </DataGrid>
-        <dvc:Chart Canvas.Top="80" Canvas.Left="10" Name="PieChart" Width="400" Height="250">
-            <dvc:Chart.Series>  
-                <dvc:PieSeries Title="Experience" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">  
-                </dvc:PieSeries>  
-            </dvc:Chart.Series>  
-        </dvc:Chart>
-        <Button x:Name="btnBackToLogin" Content="Back to Login" HorizontalAlignment="Left" Margin="95,741,0,0" VerticalAlignment="Top" Width="322" Height="68" Click="Button_Click" Grid.Column="1"/>
-        <Button x:Name="btnStartTime" Content="Start Time" Grid.Column="1" HorizontalAlignment="Left" Margin="0,173,0,0" VerticalAlignment="Top" Width="205" Height="75" Click="Button_Click_1"/>
-        <Button x:Name="btnStopTime" Content="Stop Time" Grid.Column="1" HorizontalAlignment="Left" Margin="338,173,0,0" VerticalAlignment="Top" Width="204" Height="75" Click="btnStopTime_Click"/>
-        <Label x:Name="lblStart" Content="Start Time:" Grid.Column="1" HorizontalAlignment="Left" Margin="128,414,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.624,-0.125" Foreground="Black" Height="19"/>
-        <Label x:Name="lblEnd" Content="End Time:" Grid.Column="1" HorizontalAlignment="Left" Margin="414,446,0,0" VerticalAlignment="Top" Foreground="Black" RenderTransformOrigin="-0.103,0.33"/>
-        <Label x:Name="lblTotalTime" Content="Total Time:" Grid.Column="1" HorizontalAlignment="Left" Margin="266,411,0,0" VerticalAlignment="Top" Foreground="Black"/>
-        <Label x:Name="lblError" Content="Error:" Grid.Column="1" HorizontalAlignment="Left" Margin="266,564,0,0" VerticalAlignment="Top" Foreground="Red" />
-        <Button x:Name="btnResetTime" Content="Reset Time" Grid.Column="1" HorizontalAlignment="Left" Margin="26,615,0,0" VerticalAlignment="Top" Width="537" Height="85" Click="btnResetTime_Click"/>
-        <TextBox x:Name="txtboxComment" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="235,314,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223"/>
-        <Label x:Name="lblComment" Content="Log Comment" Grid.Column="1" HorizontalAlignment="Left" Margin="128,322,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbxGroupSelection" Grid.Column="1" HorizontalAlignment="Left" Margin="839,35,0,0" VerticalAlignment="Top" Width="429" Height="39"/>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="47*"/>
+			<ColumnDefinition Width="746*"/>
+		</Grid.ColumnDefinitions>
+		<Button x:Name="btnViewAll" Content="View All" HorizontalAlignment="Left" Margin="1333,45,0,0" VerticalAlignment="Top" Width="37" Height="29" Click="btnViewAll_Click" Grid.Column="1"/>
+		<DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="395" Margin="686,415,0,0" VerticalAlignment="Top" Width="742" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+			<DataGrid.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform/>
+					<SkewTransform/>
+					<RotateTransform Angle="-0.146"/>
+					<TranslateTransform/>
+				</TransformGroup>
+			</DataGrid.RenderTransform>
+		</DataGrid>
+		<dvc:Chart Canvas.Top="80" Canvas.Left="10" Name="PieChart" Grid.Column="1" Margin="690,119,73,498">
+			<dvc:Chart.Series>
+				<dvc:PieSeries Title="Experience" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
+				</dvc:PieSeries>
+			</dvc:Chart.Series>
+		</dvc:Chart>
+		<Button x:Name="btnBackToLogin" Content="Back to Login" HorizontalAlignment="Left" Margin="95,741,0,0" VerticalAlignment="Top" Width="322" Height="68" Click="Button_Click" Grid.Column="1"/>
+		<Button x:Name="btnStartTime" Content="Start Time" Grid.Column="1" HorizontalAlignment="Left" Margin="0,173,0,0" VerticalAlignment="Top" Width="205" Height="75" Click="Button_Click_1"/>
+		<Button x:Name="btnStopTime" Content="Stop Time" Grid.Column="1" HorizontalAlignment="Left" Margin="338,173,0,0" VerticalAlignment="Top" Width="204" Height="75" Click="btnStopTime_Click"/>
+		<Label x:Name="lblStart" Content="Start Time:" Grid.Column="1" HorizontalAlignment="Left" Margin="128,414,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.624,-0.125" Foreground="Black" Height="19"/>
+		<Label x:Name="lblEnd" Content="End Time:" Grid.Column="1" HorizontalAlignment="Left" Margin="414,446,0,0" VerticalAlignment="Top" Foreground="Black" RenderTransformOrigin="-0.103,0.33"/>
+		<Label x:Name="lblTotalTime" Content="Total Time:" Grid.Column="1" HorizontalAlignment="Left" Margin="266,411,0,0" VerticalAlignment="Top" Foreground="Black"/>
+		<Label x:Name="lblError" Content="Error:" Grid.Column="1" HorizontalAlignment="Left" Margin="266,564,0,0" VerticalAlignment="Top" Foreground="Red" />
+		<Button x:Name="btnResetTime" Content="Reset Time" Grid.Column="1" HorizontalAlignment="Left" Margin="26,615,0,0" VerticalAlignment="Top" Width="537" Height="85" Click="btnResetTime_Click"/>
+		<TextBox x:Name="txtboxComment" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="235,314,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223"/>
+		<Label x:Name="lblComment" Content="Log Comment" Grid.Column="1" HorizontalAlignment="Left" Margin="128,322,0,0" VerticalAlignment="Top"/>
+		<ComboBox x:Name="cbxGroupSelection" Grid.Column="1" HorizontalAlignment="Left" Margin="839,35,0,0" VerticalAlignment="Top" Width="429" Height="39"/>
 
-    </Grid>
+	</Grid>
 </Window>
