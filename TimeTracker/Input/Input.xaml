@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimeTracker.Input"
         mc:Ignorable="d"
-        Title="Input" Height="450" Width="800">
+        Title="Input" Height="900" Width="1600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="47*"/>
             <ColumnDefinition Width="746*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnViewAll" Content="View All" HorizontalAlignment="Left" Margin="22,281,0,0" VerticalAlignment="Top" Width="152" Height="41" Click="btnViewAll_Click" Grid.ColumnSpan="2"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="110" Margin="160.667,280,0,0" VerticalAlignment="Top" Width="561" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+        <Button x:Name="btnViewAll" Content="View All" HorizontalAlignment="Left" Margin="1126,152,0,0" VerticalAlignment="Top" Width="334" Height="32" Click="btnViewAll_Click" Grid.Column="1"/>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="395" Margin="686,415,0,0" VerticalAlignment="Top" Width="742" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -22,17 +22,17 @@
                 </TransformGroup>
             </DataGrid.RenderTransform>
         </DataGrid>
-        <Button x:Name="btnBackToLogin" Content="Back to Login" HorizontalAlignment="Left" Margin="22,345,0,0" VerticalAlignment="Top" Width="152" Height="41
-                " Click="Button_Click" Grid.ColumnSpan="2"/>
-        <Button x:Name="btnStartTime" Content="Start Time" Grid.Column="1" HorizontalAlignment="Left" Margin="127.667,35,0,0" VerticalAlignment="Top" Width="205" Height="75" Click="Button_Click_1"/>
-        <Button x:Name="btnStopTime" Content="Stop Time" Grid.Column="1" HorizontalAlignment="Left" Margin="436.667,35,0,0" VerticalAlignment="Top" Width="204" Height="75" Click="btnStopTime_Click"/>
-        <Label x:Name="lblStart" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="217.667,216,0,0" VerticalAlignment="Top" Visibility="Hidden" RenderTransformOrigin="0.624,-0.125" Foreground="Black" Height="19"/>
-        <Label x:Name="lblEnd" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="499.667,216,0,0" VerticalAlignment="Top" Visibility="Hidden" Foreground="Black" RenderTransformOrigin="-0.103,0.33"/>
-        <Label x:Name="lblTotalTime" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="304.667,243,0,0" VerticalAlignment="Top" Foreground="Black" Visibility="Hidden"/>
-        <Label x:Name="lblError" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="413.667,203,0,0" VerticalAlignment="Top" Foreground="Red" Visibility="Hidden"/>
-        <Button x:Name="btnResetTime" Content="Reset Time" Grid.Column="1" HorizontalAlignment="Left" Margin="613.667,243,0,0" VerticalAlignment="Top" Width="105" Height="27" Click="btnResetTime_Click"/>
-        <TextBox x:Name="txtboxComment" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="277.667,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223"/>
-        <Label x:Name="lblComment" Content="Log Comment" Grid.Column="1" HorizontalAlignment="Left" Margin="170.667,152,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnBackToLogin" Content="Back to Login" HorizontalAlignment="Left" Margin="95,741,0,0" VerticalAlignment="Top" Width="322" Height="68" Click="Button_Click" Grid.Column="1"/>
+        <Button x:Name="btnStartTime" Content="Start Time" Grid.Column="1" HorizontalAlignment="Left" Margin="0,173,0,0" VerticalAlignment="Top" Width="205" Height="75" Click="Button_Click_1"/>
+        <Button x:Name="btnStopTime" Content="Stop Time" Grid.Column="1" HorizontalAlignment="Left" Margin="338,173,0,0" VerticalAlignment="Top" Width="204" Height="75" Click="btnStopTime_Click"/>
+        <Label x:Name="lblStart" Content="Start Time:" Grid.Column="1" HorizontalAlignment="Left" Margin="128,414,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.624,-0.125" Foreground="Black" Height="19"/>
+        <Label x:Name="lblEnd" Content="End Time:" Grid.Column="1" HorizontalAlignment="Left" Margin="414,446,0,0" VerticalAlignment="Top" Foreground="Black" RenderTransformOrigin="-0.103,0.33"/>
+        <Label x:Name="lblTotalTime" Content="Total Time:" Grid.Column="1" HorizontalAlignment="Left" Margin="266,411,0,0" VerticalAlignment="Top" Foreground="Black"/>
+        <Label x:Name="lblError" Content="Error:" Grid.Column="1" HorizontalAlignment="Left" Margin="266,564,0,0" VerticalAlignment="Top" Foreground="Red" />
+        <Button x:Name="btnResetTime" Content="Reset Time" Grid.Column="1" HorizontalAlignment="Left" Margin="26,615,0,0" VerticalAlignment="Top" Width="537" Height="85" Click="btnResetTime_Click"/>
+        <TextBox x:Name="txtboxComment" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="235,314,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223"/>
+        <Label x:Name="lblComment" Content="Log Comment" Grid.Column="1" HorizontalAlignment="Left" Margin="128,322,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbxGroupSelection" Grid.Column="1" HorizontalAlignment="Left" Margin="839,35,0,0" VerticalAlignment="Top" Width="429" Height="39"/>
 
     </Grid>
 </Window>
