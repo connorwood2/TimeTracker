@@ -24,9 +24,9 @@
 				</TransformGroup>
 			</DataGrid.RenderTransform>
 		</DataGrid>
-		<dvc:Chart Canvas.Top="80" Canvas.Left="10" Name="PieChart" Grid.Column="1" Margin="690,119,73,498">
+		<dvc:Chart Canvas.Top="80" Canvas.Left="10" Name="PieChart" Grid.Column="1" Margin="690,119,73,498" Title="Users Chart" LegendTitle="Total Hours">
 			<dvc:Chart.Series>
-				<dvc:PieSeries Title="Experience" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
+				<dvc:PieSeries Title="Total Hours" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
 				</dvc:PieSeries>
 			</dvc:Chart.Series>
 		</dvc:Chart>

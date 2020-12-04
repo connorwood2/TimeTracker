@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.DataVisualization.Charting;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -49,7 +50,16 @@ namespace TimeTracker.Input
 
             dataGrid.ItemsSource = new DataView(view.Tables[0]); // Grab [User] Table
 
-            //dataGrid.ItemsSource = new DataView(view.Tables["User"]); // Did not work
+            ((PieSeries) PieChart.Series[0]).ItemsSource = new KeyValuePair<string, int>[]
+            {
+                new KeyValuePair<string, int>("Project Manager", 12),
+                new KeyValuePair<string, int>("CEO", 25),
+                new KeyValuePair<string, int>("Software Engg.", 5),
+                new KeyValuePair<string, int>("Team Leader", 6),
+                new KeyValuePair<string, int>("Project Leader", 10),
+                new KeyValuePair<string, int>("Developer", 4)
+                //dataGrid.ItemsSource = new DataView(view.Tables["User"]); // Did not work
+            };
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
