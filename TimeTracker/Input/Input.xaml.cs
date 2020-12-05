@@ -50,6 +50,7 @@ namespace TimeTracker.Input
                 btnStopTime.IsEnabled = false;
                 txtboxComment.IsEnabled = false;
                 btnResetTime.IsEnabled = false;
+                btnInsertData.IsEnabled = false;
             }
 
             //Populate the combo box
@@ -69,6 +70,10 @@ namespace TimeTracker.Input
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
+            if(cbxGroupSelection.SelectedItem == null)
+            {
+                return;
+            }
             var groupNum = cbxGroupSelection.SelectedItem.ToString();
             PopulateResults(groupNum);
         }

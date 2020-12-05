@@ -101,7 +101,7 @@ namespace TimeTracker.SignUp
                 lblError.Content = "Error: Missing required field: Password";
                 return;
             }
-            if ((txtGroup.Text == "" || txtGroup.Text == "Group") && cbxGroupSelection.SelectedItem == null)
+            if ((txtGroup.Text == "" || txtGroup.Text == "Group Number") && cbxGroupSelection.SelectedItem == null)
             {
                 lblError.Visibility = Visibility.Visible;
                 lblError.Content = "Error: Missing required field: Group Number";
