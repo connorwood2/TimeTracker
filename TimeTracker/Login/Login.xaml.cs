@@ -67,6 +67,7 @@ namespace TimeTracker.Login
             }
 
         }
+
         /// <summary>
         /// Will delete the text inside of the username field when a user clicks there
         /// </summary>

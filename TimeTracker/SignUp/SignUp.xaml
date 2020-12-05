@@ -12,9 +12,9 @@
         <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Height="51" Margin="219,137,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="346" FontSize="24" VerticalContentAlignment="Center" GotFocus="txtPassword_GotFocus" AllowDrop="True"/>
         <TextBox x:Name="txtGroup" KeyUp="txtGroup_KeyUp" HorizontalAlignment="Left" Height="51" Margin="391,222,0,0" TextWrapping="Wrap" Text="Group Number" VerticalAlignment="Top" Width="173" FontSize="24" VerticalContentAlignment="Center" GotFocus="txtGroup_GotFocus" AllowDrop="True" PreviewTextInput="NumberValidationTextBox"/>
         <Label Content="Select or enter 0 to be an observer" HorizontalAlignment="Left" Margin="290,278,0,0" VerticalAlignment="Top" Width="250" FontSize="14"/>
-        <Button x:Name="btnSubmitButton" Content="Submit" HorizontalAlignment="Left" Margin="167,346,0,0" VerticalAlignment="Top" Width="211" Height="44" FontSize="24" Click="btnSubmitButton_Click"/>
+        <Button x:Name="btnSubmitButton" IsDefault="True" Content="Submit" HorizontalAlignment="Left" Margin="167,346,0,0" VerticalAlignment="Top" Width="211" Height="44" FontSize="24" Click="btnSubmitButton_Click"/>
         <Label x:Name="lblError" Content="Error: " HorizontalAlignment="Left" Margin="241,319,0,0" VerticalAlignment="Top" Height="22" Width="345" Foreground="Red" FontSize="16" Visibility="Hidden"/>
-        <Button x:Name="btnBackToLogin" Content="Back to Login" HorizontalAlignment="Left" Margin="405,346,0,0" VerticalAlignment="Top" Width="219" Height="44" FontSize="24" Click="btnBackToLogin_Click"/>
+        <Button x:Name="btnBackToLogin" IsCancel="True" Content="Back to Login" HorizontalAlignment="Left" Margin="405,346,0,0" VerticalAlignment="Top" Width="219" Height="44" FontSize="24" Click="btnBackToLogin_Click"/>
         <ComboBox
             Height="51"
             HorizontalAlignment="Left"

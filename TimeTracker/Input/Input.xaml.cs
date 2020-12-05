@@ -72,14 +72,20 @@ namespace TimeTracker.Input
         {
             if(cbxGroupSelection.SelectedItem == null)
             {
+                lblError.Content = "You must first select a group";
+                lblError.Visibility = Visibility.Visible;
                 return;
             }
+
+            lblError.Visibility = Visibility.Hidden;
             var groupNum = cbxGroupSelection.SelectedItem.ToString();
             PopulateResults(groupNum);
         }
 
         private void cbxGroupSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+            lblError.Visibility = Visibility.Hidden;
             var groupNum = cbxGroupSelection.SelectedItem.ToString();
             PopulateResults(groupNum);
         }
@@ -107,6 +113,14 @@ namespace TimeTracker.Input
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            if (StartTime != DateTime.MinValue)
+            {
+                lblError.Visibility = Visibility.Visible;
+                lblError.Content = "Error: Start time has already been set -  reset time to start again.";
+                return;
+            }
+
+            lblError.Visibility = Visibility.Hidden;
             StartTime = DateTime.Now;
             lblStart.Visibility = Visibility.Visible;
             lblStart.Content = $"Start Time: {StartTime}";
@@ -122,6 +136,7 @@ namespace TimeTracker.Input
                 return;
             }
 
+            lblError.Visibility = Visibility.Hidden;
             EndTime = DateTime.Now;
             lblEnd.Visibility = Visibility.Visible;
             lblEnd.Content = $"Stop Time: {EndTime}";
@@ -133,7 +148,7 @@ namespace TimeTracker.Input
             var difference = EndTime - StartTime;
             lblTotalTime.Content = ($"Total Time: {difference.Hours:00}:{difference.Minutes:00}:{difference.Seconds + difference.Milliseconds / 1000.0:00}");
 
-            _seconds = difference.Seconds;
+            _seconds = difference.Seconds + difference.Minutes * 60 + difference.Hours * 3600;
 
             lblTotalTime.Visibility = Visibility.Visible;
         }
